@@ -1,0 +1,7 @@
+{
+    "require": {
+        "intervention/image": "2.7",
+        "dompdf/dompdf": "^3.1",
+        "endroid/qr-code": "5.0"
+    }
+}

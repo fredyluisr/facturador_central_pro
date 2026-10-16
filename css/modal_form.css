@@ -1,0 +1,237 @@
+/* ==========================================================
+   SHARED MODAL FORM STYLES — clase: modal-form
+   Aplicar class="modal-form" al div.modal de crear/editar
+========================================================== */
+
+.modal-form .modal-content {
+    border: 1px solid rgba(104,126,180,.18);
+    border-radius: 22px;
+    background: #f4f6f8;
+    box-shadow: 0 28px 80px rgba(6,9,20,.30);
+    overflow: hidden;
+}
+
+.modal-form .modal-header {
+    border-top-left-radius: inherit !important;
+    border-top-right-radius: inherit !important;
+    background: radial-gradient(circle at 94% 0,rgba(20,216,255,.16),transparent 42%),linear-gradient(120deg,#0b1020,#17213a) !important;
+    border-bottom: 1px solid rgba(132,153,196,.18);
+    padding: 18px 22px;
+    color: #fff !important;
+}
+
+.modal-form .modal-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.modal-form .modal-title i {
+    width: 32px;
+    height: 32px;
+    border-radius: 10px;
+    background: #f3f4f6;
+    color: #374151;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: .9rem;
+}
+
+.modal-form .modal-title::before{content:"";width:9px;height:9px;border-radius:50%;background:#14d8ff;box-shadow:0 0 14px rgba(20,216,255,.75)}
+
+.modal-form .close {
+    border: none;
+    background: transparent;
+    width:34px;height:34px;border:1px solid rgba(255,255,255,.14);border-radius:50%;background:rgba(255,255,255,.08);color:#fff!important;
+    opacity: 1 !important;
+}
+
+.modal-form .modal-body {
+    padding: 20px 22px;
+    background: linear-gradient(180deg, #f8fafc 0%, #f4f6f8 100%);
+}
+
+/* ===== INPUTS ===== */
+.modal-form .form-control,
+.modal-form .form-select {
+    height: 42px;
+    border-radius: 12px;
+    border: 1px solid #e5e7eb;
+    background: #fcfcfd;
+    font-size: .90rem;
+    box-shadow: none;
+    transition: border-color .18s ease;
+}
+
+.modal-form textarea.form-control {
+    height: auto;
+    min-height: 80px;
+}
+
+.modal-form .form-control:focus,
+.modal-form .form-select:focus {
+    border-color: #6e87ff;
+    box-shadow: 0 0 0 3px rgba(56,103,255,.10);
+}
+
+/* ===== SELECT2 ===== */
+.modal-form .select2-container--default .select2-selection--single {
+    height: 42px !important;
+    border-radius: 12px !important;
+    border: 1px solid #e5e7eb !important;
+    background: #fcfcfd !important;
+    display: flex;
+    align-items: center;
+    padding-left: 6px;
+}
+
+.modal-form .select2-selection__rendered {
+    line-height: 40px !important;
+}
+
+.modal-form .select2-selection__arrow {
+    height: 40px !important;
+}
+
+/* ===== BOTONES ===== */
+.modal-form .btn {
+    height: 42px;
+    border-radius: 12px;
+    font-size: .88rem;
+    font-weight: 600;
+    padding: 0 18px;
+    box-shadow: none !important;
+}
+
+.modal-form .btn-primary{border:0!important;background:linear-gradient(110deg,#3867ff,#7b61ff)!important;color:#fff!important;box-shadow:0 9px 22px rgba(56,103,255,.20)!important}.modal-form .btn-secondary{border:1px solid #dce3ee!important;background:#fff!important;color:#536176!important}
+
+/* ===== FOOTER ===== */
+.modal-footer-custom {
+    border-top: 1px solid #e9edf3;
+    background: #f8fafc;
+    padding: 16px 22px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+}
+
+.modal-footer-custom .btn-secondary {
+    background: #6b7280;
+    border: none;
+    color: #fff !important;
+}
+
+.modal-footer-custom .btn-secondary:hover {
+    background: #4b5563;
+}
+
+/* Pestañas y listas de selección compartidas por los mantenedores iFact. */
+.pos-page .modal-form .btn-secondary {background:#fff!important;color:#536176!important;border:1px solid #dce3ee!important;}
+.pos-page .modal-form .modal-header .close {filter:none!important;}
+.pos-page .modal-form .nav-tabs {gap:8px;border-bottom:1px solid #dce3ee;background:transparent;padding:0 0 12px;}
+.pos-page .modal-form .nav-tabs .nav-link {border:0!important;border-radius:10px!important;background:transparent!important;color:#536176!important;padding:10px 18px;font-weight:700;}
+.pos-page .modal-form .nav-tabs .nav-link.active {background:linear-gradient(110deg,#3867ff,#7b61ff)!important;color:#fff!important;box-shadow:0 7px 18px rgba(56,103,255,.18)!important;}
+.pos-page .modal-form .nav-tabs .nav-link:focus-visible {outline:2px solid #3867ff;outline-offset:2px;}
+.pos-page .select2-container--default .select2-results__option--highlighted[aria-selected],
+.pos-page .select2-container--default .select2-results__option--highlighted.select2-results__option--selectable {background:linear-gradient(110deg,#3867ff,#7b61ff)!important;color:#fff!important;}
+.pos-page .select2-dropdown {border:1px solid #dbe2ec!important;border-radius:10px!important;box-shadow:0 12px 28px rgba(16,26,49,.12);overflow:hidden;}
+.pos-page .select2-container--default .select2-search--dropdown .select2-search__field {border:1px solid #dbe2ec;border-radius:7px;padding:7px;outline-color:#3867ff;}
+.pos-page .modal-form .campo-editable.border-warning {border-color:#3867ff!important;box-shadow:0 0 0 3px rgba(56,103,255,.12);}
+
+/* ===== LABELS ===== */
+.form-label-custom {
+    font-size: .72rem;
+    font-weight: 600;
+    color: #6b7280;
+    margin-bottom: 6px;
+    display: block;
+}
+
+.seccion-label-minimal {
+    font-size: .74rem;
+    font-weight: 700;
+    color: #6b7280;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.seccion-label-minimal i {
+    font-size: .72rem;
+}
+
+.seccion-bloque {
+    background: #fff;
+    border: 1px solid #f1f5f9;
+    border-radius: 18px;
+    padding: 16px 18px;
+    margin-bottom: 14px;
+}
+
+/* ===== TABLA INTERNA ===== */
+.tabla-detalle {
+    background: #fff;
+}
+
+.tabla-detalle thead {
+    background: transparent;
+}
+
+.tabla-detalle thead th {
+    border: none !important;
+    border-bottom: 1px solid #eef2f7 !important;
+    color: #6b7280;
+    font-size: .72rem;
+    font-weight: 700;
+    letter-spacing: .03em;
+    padding: 10px;
+}
+
+.tabla-detalle tbody td {
+    border-color: #f8fafc;
+    padding: 9px 10px;
+    vertical-align: middle;
+    font-size: .88rem;
+    color: #111827;
+}
+
+.tabla-detalle tbody tr {
+    transition: background .15s ease;
+}
+
+.tabla-detalle tbody tr:hover {
+    background: #f6f8fb;
+}
+
+.tabla-detalle .btn {
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    padding: 0;
+    font-size: .72rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ===== MOBILE ===== */
+@media (max-width: 768px) {
+    .modal-form .modal-dialog {
+        margin: 10px;
+    }
+    .modal-form .modal-content {
+        border-radius: 18px;
+    }
+    .modal-footer-custom {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+}

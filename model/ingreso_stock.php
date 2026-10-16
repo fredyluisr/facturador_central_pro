@@ -1,0 +1,47 @@
+<?php
+require_once __DIR__.'/conexion.php';
+require_once __DIR__.'/costos_fifo.php';
+
+final class ingreso_stock
+{
+    private PDO $db;
+    public function __construct(?PDO $db=null){$this->db=$db??(new conexion())->con();}
+    private function q(string $sql,array $args=[]): PDOStatement {$s=$this->db->prepare($sql);$s->execute($args);return $s;}
+    private function fecha(string $v): string {$d=DateTime::createFromFormat('!Y-m-d',$v);if(!$d||$d->format('Y-m-d')!==$v)throw new InvalidArgumentException('Selecciona una fecha válida.');return $v;}
+    public function listar(int $loc,string $inicio,string $fin): array {
+        $inicio=$this->fecha($inicio);$fin=$this->fecha($fin);if($inicio>$fin)throw new InvalidArgumentException('La fecha inicial no puede ser mayor que la final.');
+        return $this->q("SELECT i.isi_id,CONCAT('ING-',LPAD(i.isi_id,6,'0')) numero,i.isi_fecha,i.isi_items,i.isi_cantidad,i.isi_observacion,i.fechahora FROM ingreso_stock i WHERE i.loc_id=? AND i.isi_estado=1 AND i.isi_fecha BETWEEN ? AND ? ORDER BY i.isi_id DESC",[$loc,$inicio,$fin])->fetchAll(PDO::FETCH_ASSOC);
+    }
+    public function obtener(int $id,int $loc): array {
+        $cab=$this->q("SELECT i.*,CONCAT('ING-',LPAD(i.isi_id,6,'0')) numero,l.loc_nombre FROM ingreso_stock i JOIN local l ON l.loc_id=i.loc_id WHERE i.isi_id=? AND i.loc_id=? AND i.isi_estado=1",[$id,$loc])->fetch(PDO::FETCH_ASSOC);if(!$cab)throw new InvalidArgumentException('El ingreso no está disponible.');
+        return ['cabecera'=>$cab,'detalle'=>$this->q('SELECT d.isd_id,d.pva_id,d.isd_producto,d.isd_sku,d.isd_unidad,d.isd_cantidad,d.isd_costo_unitario,CASE WHEN v.pva_id IS NULL THEN NULL ELSE COALESCE(s.cantidad,0) END stock_actual FROM ingreso_stock_detalle d LEFT JOIN producto_variante v ON v.pva_id=d.pva_id LEFT JOIN stock_variante s ON s.pva_id=d.pva_id AND s.loc_id=? WHERE d.isi_id=? ORDER BY d.isd_id',[$loc,$id])->fetchAll(PDO::FETCH_ASSOC)];
+    }
+    public function productos(int $loc): array {
+        $sql="SELECT v.pva_id,v.pro_id,v.pva_sku,v.pva_codigo_barras,p.pro_nombre AS producto_nombre,p.pro_nombre,c.cat_nombre,u.und_abrev,u.und_decimales,COALESCE(s.cantidad,0) stock_actual,COALESCE(attrs.descripcion,'Sin atributos') atributos_texto,CONCAT(p.pro_nombre,CASE WHEN attrs.descripcion IS NULL THEN '' ELSE CONCAT(' · ',attrs.descripcion) END) nombre_completo FROM producto_variante v JOIN producto p ON p.pro_id=v.pro_id LEFT JOIN categoria c ON c.cat_id=p.cat_id JOIN unidad_medida u ON u.und_id=p.und_med LEFT JOIN stock_variante s ON s.pva_id=v.pva_id AND s.loc_id=? LEFT JOIN (SELECT vv.pva_id,GROUP_CONCAT(CONCAT(a.atr_nombre,': ',av.ava_nombre) ORDER BY a.atr_id SEPARATOR ' · ') descripcion FROM producto_variante_valor vv JOIN atributo a ON a.atr_id=vv.atr_id JOIN atributo_valor av ON av.ava_id=vv.ava_id GROUP BY vv.pva_id) attrs ON attrs.pva_id=v.pva_id WHERE p.pro_estado=1 AND v.pva_estado=1 AND u.und_estado=1 ORDER BY p.pro_nombre,v.pva_sku";
+        $productos=$this->q($sql,[$loc])->fetchAll(PDO::FETCH_ASSOC);$porId=[];foreach($productos as &$p){$p['atributos']=[];$porId[(int)$p['pva_id']]=&$p;}unset($p);
+        if($porId){$ids=implode(',',array_map('intval',array_keys($porId)));$attrs=$this->q("SELECT vv.pva_id,a.atr_id,a.atr_nombre,av.ava_id,av.ava_nombre,av.ava_color FROM producto_variante_valor vv JOIN atributo a ON a.atr_id=vv.atr_id JOIN atributo_valor av ON av.ava_id=vv.ava_id WHERE vv.pva_id IN ($ids) ORDER BY a.atr_id")->fetchAll(PDO::FETCH_ASSOC);foreach($attrs as $a)$porId[(int)$a['pva_id']]['atributos'][]=$a;}
+        return $productos;
+    }
+    public function guardar(int $loc,int $usu,array $data): int {
+        $fecha=$this->fecha((string)($data['fecha']??''));$obs=trim((string)($data['observacion']??''));if(mb_strlen($obs)>1000)throw new InvalidArgumentException('La observación es demasiado extensa.');$clave=strtolower(trim((string)($data['clave']??'')));if(!preg_match('/^[a-f0-9]{32}$/',$clave))throw new InvalidArgumentException('La operación no es válida.');$items=$data['items']??[];if(!is_array($items)||!count($items)||count($items)>300)throw new InvalidArgumentException('Agrega entre 1 y 300 productos.');
+        $this->db->beginTransaction();try{
+            $existente=$this->q('SELECT isi_id FROM ingreso_stock WHERE isi_clave=?',[$clave])->fetchColumn();if($existente){$this->db->commit();return (int)$existente;}
+            if(!$this->q('SELECT loc_id FROM local WHERE loc_id=? AND loc_estado=1 FOR UPDATE',[$loc])->fetchColumn())throw new InvalidArgumentException('El local seleccionado no está disponible.');
+            $filas=[];$vistos=[];$total=0;usort($items,fn($a,$b)=>(int)($a['pva_id']??0)<=>(int)($b['pva_id']??0));
+            foreach($items as $item){$id=(int)($item['pva_id']??0);$cantidad=(float)($item['cantidad']??0);$costo=$item['costo_unitario']??null;if(!$id||isset($vistos[$id])||!is_finite($cantidad)||$cantidad<=0||$cantidad>9999999)throw new InvalidArgumentException('Revisa los productos y sus cantidades.');if(!is_numeric($costo)||!is_finite((float)$costo)||(float)$costo<0||(float)$costo>9999999||abs((float)$costo-round((float)$costo,2))>0.000001)throw new InvalidArgumentException('Ingresa un precio de compra válido, con dos decimales como máximo.');$costo=round((float)$costo,2);$vistos[$id]=1;$v=$this->q("SELECT v.pva_id,v.pva_sku,p.pro_nombre,u.und_abrev,u.und_decimales,COALESCE(attrs.descripcion,'') atributos FROM producto_variante v JOIN producto p ON p.pro_id=v.pro_id JOIN unidad_medida u ON u.und_id=p.und_med LEFT JOIN (SELECT vv.pva_id,GROUP_CONCAT(CONCAT(a.atr_nombre,': ',av.ava_nombre) ORDER BY a.atr_id SEPARATOR ' · ') descripcion FROM producto_variante_valor vv JOIN atributo a ON a.atr_id=vv.atr_id JOIN atributo_valor av ON av.ava_id=vv.ava_id GROUP BY vv.pva_id) attrs ON attrs.pva_id=v.pva_id WHERE v.pva_id=? AND v.pva_estado=1 AND p.pro_estado=1 AND u.und_estado=1",[$id])->fetch(PDO::FETCH_ASSOC);if(!$v)throw new InvalidArgumentException('Uno de los productos ya no está disponible.');if(abs($cantidad-round($cantidad,(int)$v['und_decimales']))>0.0000001)throw new InvalidArgumentException('La cantidad de '.$v['pro_nombre'].' no respeta los decimales de su unidad.');$cantidad=round($cantidad,3);$total+=$cantidad;$nombre=$v['pro_nombre'].($v['atributos']?' · '.$v['atributos']:'');$filas[]=[$v,$cantidad,$nombre,$costo];}
+            $this->q('INSERT INTO ingreso_stock(loc_id,isi_fecha,isi_observacion,isi_items,isi_cantidad,isi_clave,usuario) VALUES(?,?,?,?,?,?,?)',[$loc,$fecha,$obs?:null,count($filas),$total,$clave,$usu]);$ingreso=(int)$this->db->lastInsertId();
+            $fifo=new costos_fifo($this->db);foreach($filas as [$v,$cantidad,$nombre,$costo]){$anterior=(float)($this->q('SELECT cantidad FROM stock_variante WHERE pva_id=? AND loc_id=? FOR UPDATE',[$v['pva_id'],$loc])->fetchColumn()?:0);$this->q('INSERT INTO ingreso_stock_detalle(isi_id,pva_id,isd_cantidad,isd_costo_unitario,isd_producto,isd_sku,isd_unidad) VALUES(?,?,?,?,?,?,?)',[$ingreso,$v['pva_id'],$cantidad,$costo,$nombre,$v['pva_sku'],$v['und_abrev']]);$detalleId=(int)$this->db->lastInsertId();$this->q('INSERT INTO stock_variante(pva_id,loc_id,cantidad) VALUES(?,?,?) ON DUPLICATE KEY UPDATE cantidad=cantidad+VALUES(cantidad)',[$v['pva_id'],$loc,$cantidad]);$disponible=round(max(0,$anterior+$cantidad)-max(0,$anterior),3);if($disponible>0)$fifo->ingreso($loc,(int)$v['pva_id'],$fecha,$disponible,$costo,$detalleId);$this->q('INSERT INTO movimiento_stock_variante(pva_id,loc_id,cantidad,tipo,ven_id,isi_id,usuario) VALUES(?,?,?,1,NULL,?,?)',[$v['pva_id'],$loc,$cantidad,$ingreso,$usu]);}
+            $this->db->commit();return $ingreso;
+        }catch(Throwable $e){if($this->db->inTransaction())$this->db->rollBack();throw $e;}
+    }
+    public function anular(int $id,int $loc,int $usu): void {
+        if($id<=0)throw new InvalidArgumentException('El ingreso no es válido.');
+        $this->db->beginTransaction();try{
+            $ingreso=$this->q('SELECT isi_id FROM ingreso_stock WHERE isi_id=? AND loc_id=? AND isi_estado=1 FOR UPDATE',[$id,$loc])->fetchColumn();if(!$ingreso)throw new InvalidArgumentException('El ingreso ya fue eliminado o no está disponible.');
+            $detalle=$this->q('SELECT isd_id,pva_id,isd_cantidad,isd_producto FROM ingreso_stock_detalle WHERE isi_id=? ORDER BY pva_id',[$id])->fetchAll(PDO::FETCH_ASSOC);if(!$detalle)throw new InvalidArgumentException('El ingreso no tiene productos para revertir.');
+            foreach($detalle as $d){$stock=$this->q('SELECT cantidad FROM stock_variante WHERE pva_id=? AND loc_id=? FOR UPDATE',[$d['pva_id'],$loc])->fetchColumn();if($stock===false||(float)$stock+0.000001<(float)$d['isd_cantidad'])throw new InvalidArgumentException('No se puede eliminar porque parte del stock de '.$d['isd_producto'].' ya fue utilizado o vendido.');}
+            $fifo=new costos_fifo($this->db);foreach($detalle as $d){$fifo->anularIngreso($loc,(int)$d['pva_id'],(int)$d['isd_id']);$this->q('UPDATE stock_variante SET cantidad=cantidad-? WHERE pva_id=? AND loc_id=?',[$d['isd_cantidad'],$d['pva_id'],$loc]);$this->q('INSERT INTO movimiento_stock_variante(pva_id,loc_id,cantidad,tipo,ven_id,isi_id,usuario) VALUES(?,?,?,4,NULL,?,?)',[$d['pva_id'],$loc,$d['isd_cantidad'],$id,$usu]);}
+            $this->q('UPDATE ingreso_stock SET isi_estado=0 WHERE isi_id=?',[$id]);$this->db->commit();
+        }catch(Throwable $e){if($this->db->inTransaction())$this->db->rollBack();throw $e;}
+    }
+}

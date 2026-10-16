@@ -1,0 +1,178 @@
+/* Overflow visible para no recortar select2 */
+#reg_edi .modal-content {
+    overflow: visible;
+}
+
+#reg_edi .modal-header {
+    border-radius: 22px 22px 0 0;
+}
+
+#reg_edi .modal-footer-custom {
+    border-radius: 0 0 22px 22px;
+}
+
+/* ===== TABS — estilo limpio sin amarillo ===== */
+#reg_edi #myTab {
+    background: transparent;
+    padding: 0;
+    border-bottom: 1px solid #eef2f7;
+    border-radius: 0;
+    gap: 0;
+    margin-bottom: 0;
+}
+
+#reg_edi #myTab .nav-link {
+    color: #6b7280;
+    font-weight: 600;
+    border: none;
+    border-bottom: 2px solid transparent;
+    border-radius: 0;
+    padding: 10px 18px;
+    margin-bottom: -1px;
+    background: transparent;
+    transition: color .18s, border-color .18s;
+}
+
+#reg_edi #myTab .nav-link:hover {
+    color: #374151;
+    background: transparent;
+    border-bottom-color: #9ca3af;
+}
+
+#reg_edi #myTab .nav-link.active {
+    color: #111827;
+    font-weight: 700;
+    background: transparent;
+    border-bottom: 2px solid #111827;
+    box-shadow: none;
+}
+
+/* Contenido de tabs — tarjeta blanca */
+#reg_edi #myTabContent {
+    background: #fff;
+    border: 1px solid #eef2f7;
+    border-top: none;
+    border-radius: 0 0 18px 18px;
+    padding: 20px 18px 16px;
+    margin-top: 0;
+    box-shadow: none;
+}
+
+/* Espaciado entre grupos de campos */
+#reg_edi .form-group {
+    margin-bottom: 14px;
+}
+
+/* Botón RENIEC — tema oscuro */
+#btn_reniec {
+    background: linear-gradient(135deg, #111827, #1f2937);
+    color: #fff !important;
+    border: none;
+    border-radius: 0 12px 12px 0;
+}
+
+#btn_reniec:hover {
+    background: linear-gradient(135deg, #1f2937, #374151);
+}
+
+/* Botón guardar — dark */
+#btn_guardar {
+    background: linear-gradient(135deg, #111827, #1f2937);
+    color: #fff;
+    min-width: 130px;
+}
+
+#btn_guardar:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 18px rgba(15,23,42,.18) !important;
+}
+
+/* Select2 z-index */
+.select2-dropdown {
+    z-index: 1060 !important;
+}
+
+/* Buscar DNI integrado al campo: ocultarlo no modifica el ancho del input. */
+#reg_edi .employee-document-field { position: relative; width: 100%; }
+#reg_edi .employee-document-field #emp_nro_doc { width: 100%; border-radius: 10px; }
+#reg_edi .employee-document-field.has-document-search #emp_nro_doc { padding-right: 46px; }
+#reg_edi .employee-document-field #btn_reniec {
+    position: absolute;
+    top: 50%;
+    right: 5px;
+    transform: translateY(-50%);
+    width: 32px;
+    height: 32px;
+    min-height: 0;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    box-shadow: none !important;
+    z-index: 2;
+}
+#reg_edi .employee-document-field #btn_reniec[hidden] { display: none !important; }
+
+/* ===== Fotografía del empleado: consulta y eliminación ===== */
+.swal2-popup.ifact-dni-alert {
+    width: min(420px, calc(100vw - 32px));
+    padding: 30px 28px;
+    border: 1px solid rgba(20,216,255,.22);
+    border-radius: 22px;
+    background: #ffffff;
+    box-shadow: 0 28px 80px rgba(6,9,20,.35);
+    color: #24324a;
+}
+.ifact-dni-alert .swal2-title {color:#24324a;font-size:23px;font-weight:750;padding:0;}
+.ifact-dni-alert .swal2-html-container {color:#52617a;font-size:15px;line-height:1.6;margin:12px 0 0;}
+.ifact-dni-alert .swal2-content {color:#52617a;font-size:15px;line-height:1.6;}
+.swal2-container {z-index:2000;}
+.ifact-dni-alert .swal2-loader {border-color:#14d8ff transparent #7b61ff transparent;width:48px;height:48px;}
+.ifact-dni-alert .swal2-success-ring {border-color:rgba(20,216,255,.22)!important;}
+.ifact-dni-alert .swal2-success-line-tip,.ifact-dni-alert .swal2-success-line-long {background:#14d8ff!important;}
+.ifact-dni-alert .swal2-success-circular-line-left,.ifact-dni-alert .swal2-success-circular-line-right,.ifact-dni-alert .swal2-success-fix {background:transparent!important;}
+.ifact-dni-confirm {border:0;border-radius:10px;background:linear-gradient(110deg,#3867ff,#7b61ff);color:#fff;padding:11px 24px;font-weight:700;}
+.ifact-dni-confirm:focus-visible {outline:2px solid #14d8ff;outline-offset:3px;}
+#reg_edi .employee-document-field #btn_reniec {padding:0!important;border-radius:8px!important;}
+#reg_edi .employee-document-field #btn_reniec[aria-busy="true"] {opacity:.6;cursor:wait;}
+
+.employee-photo-view {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 34px;
+    min-height: 275px;
+    padding: 24px;
+    border-radius: 16px;
+    background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+}
+
+.employee-photo-frame {
+    flex: 0 0 auto;
+    width: 164px;
+    height: 164px;
+    padding: 6px;
+    border: 3px solid #3867ff;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 15px 30px rgba(15, 23, 42, .14);
+}
+
+.employee-photo-frame img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.employee-photo-info { max-width: 390px; }
+.employee-photo-label { color: #3867ff; font-size: 10px; font-weight: 800; letter-spacing: 1.2px; }
+.employee-photo-info h5 { margin: 5px 0 8px; color: #111827; font-size: 20px; }
+.employee-photo-info p { margin-bottom: 18px; color: #6b7280; font-size: 13px; line-height: 1.55; }
+.employee-photo-info .btn-danger { border-radius: 9px; font-weight: 600; }
+
+@media (max-width: 575.98px) {
+    .employee-photo-view { flex-direction: column; gap: 18px; text-align: center; }
+    .employee-photo-frame { width: 145px; height: 145px; }
+}

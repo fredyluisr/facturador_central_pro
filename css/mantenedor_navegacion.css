@@ -1,0 +1,23 @@
+/* Mantener la misma escala de lectura que los otros mantenedores. */
+.pos-page #mantenedorNavegacion .table thead th {
+    font-size: 11px;
+}
+.pos-page #mantenedorNavegacion .table tbody td {
+    padding: 14px 10px;
+    font-size: 14px;
+    line-height: 24px;
+}
+.pos-page #mantenedorNavegacion .table tbody td > i {
+    display: inline-block;
+    min-width: 20px;
+    font-size: 18px;
+    vertical-align: middle;
+}
+.pos-page #mantenedorNavegacion .table .badge {
+    padding: 5px 8px;
+    font-size: 11px;
+    line-height: 14px;
+}
+.pos-page #mantenedorNavegacion .dataTables_wrapper {
+    font-size: 14px;
+}

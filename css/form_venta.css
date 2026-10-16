@@ -1,0 +1,353 @@
+/* =========================================
+   SECCIONES
+========================================= */
+.seccion-comprobante,
+.seccion-item {
+    background: #fff;
+    border: 1px solid #f1f5f9;
+    border-radius: 18px;
+    padding: 16px 18px;
+    margin-bottom: 14px;
+}
+
+/* =========================================
+   TIENDA BADGE
+========================================= */
+.tienda-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg, #1e293b, #334155);
+    color: #f8fafc;
+    padding: 8px 18px;
+    border-radius: 50px;
+    font-size: .88rem;
+    font-weight: 600;
+    letter-spacing: .02em;
+    margin-top: -6px;
+    box-shadow: 0 4px 12px rgba(30,41,59,.25);
+}
+.tienda-badge i {
+    font-size: .85rem;
+    color: #fbbf24;
+}
+
+/* =========================================
+   LABELS
+========================================= */
+.form-label-custom {
+    font-size: .72rem;
+    font-weight: 600;
+    color: #6b7280;
+    margin-bottom: 6px;
+    display: block;
+}
+.seccion-label-minimal {
+    font-size: .74rem;
+    font-weight: 700;
+    color: #6b7280;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+.seccion-label-minimal i { font-size: .72rem; }
+
+/* =========================================
+   INPUTS
+========================================= */
+.form-control, .form-select {
+    height: 42px;
+    border-radius: 12px;
+    border: 1px solid #e5e7eb;
+    background: #fcfcfd;
+    font-size: .90rem;
+    box-shadow: none;
+    transition: border-color .18s ease;
+}
+.form-control:focus, .form-select:focus {
+    border-color: #cbd5e1;
+    box-shadow: 0 0 0 3px rgba(148,163,184,.10);
+}
+textarea.form-control { height: auto; min-height: 70px; }
+
+/* Stock indicator */
+.input-ok      { border: 2px solid #16a34a !important; }
+.input-warning { border: 2px solid #d97706 !important; }
+.input-danger  { border: 2px solid #dc2626 !important; }
+
+/* =========================================
+   TABLA DETALLE
+========================================= */
+.tabla-detalle { background: #fff; }
+.tabla-detalle thead { background: transparent; }
+.tabla-detalle thead th {
+    border: none !important;
+    border-bottom: 1px solid #eef2f7 !important;
+    color: #6b7280;
+    font-size: .72rem;
+    font-weight: 700;
+    letter-spacing: .03em;
+    padding: 10px;
+}
+.tabla-detalle tbody td {
+    border-color: #f8fafc;
+    padding: 9px 10px;
+    vertical-align: middle;
+    font-size: .88rem;
+    color: #111827;
+}
+.tabla-detalle tbody tr { transition: background .15s ease; }
+.tabla-detalle tbody tr:hover { background: #f6f8fb; }
+.tabla-detalle .btn {
+    width: 28px; height: 28px; border-radius: 8px;
+    padding: 0; font-size: .72rem;
+    display: inline-flex; align-items: center; justify-content: center;
+}
+
+/* =========================================
+   TOTAL BOX
+========================================= */
+.total-box {
+    margin-top: 14px;
+    background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+    border: 1px solid #eef2f7;
+    border-radius: 16px;
+    padding: 16px 20px;
+    text-align: right;
+    color: #374151;
+    font-size: .92rem;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.8);
+}
+.total-box span { font-weight: 700; }
+.total-monto { font-size: 1.4rem; color: #111827; font-weight: 800; }
+
+/* =========================================
+   BOTONES HEADER
+========================================= */
+.btn-confirmar {
+    background: linear-gradient(135deg, #f59e0b, #fbbf24);
+    border: none;
+    color: #000 !important;
+    font-weight: 700;
+    height: 42px;
+    border-radius: 12px;
+    padding: 0 24px;
+    box-shadow: 0 4px 14px rgba(245,158,11,.35);
+    transition: all .25s ease;
+}
+.btn-confirmar:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 20px rgba(245,158,11,.45);
+}
+
+/* =========================================
+   SELECT2
+========================================= */
+.select2-container { width: 100% !important; }
+.select2-container .select2-selection--single {
+    height: 42px !important;
+    border-radius: 12px !important;
+    border: 1px solid #e5e7eb !important;
+    background: #fcfcfd !important;
+    display: flex;
+    align-items: center;
+    padding-left: 6px;
+}
+.select2-container .select2-selection__rendered { line-height: 40px !important; }
+.select2-container .select2-selection__arrow { height: 40px !important; }
+
+.venta-opcion-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    width: 100%;
+}
+.venta-opcion-nombre {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.venta-opcion-stock {
+    flex: 0 0 auto;
+    min-width: 88px;
+    padding: 3px 9px;
+    border-radius: 999px;
+    background: #dcfce7;
+    color: #166534;
+    font-size: .72rem;
+    font-weight: 700;
+    text-align: center;
+}
+.venta-opcion-item.sin-stock .venta-opcion-nombre {
+    color: #9ca3af;
+}
+.venta-opcion-item.sin-stock .venta-opcion-stock {
+    background: #fee2e2;
+    color: #b91c1c;
+}
+.select2-results__option--highlighted .venta-opcion-stock {
+    box-shadow: 0 0 0 1px rgba(255,255,255,.65);
+}
+
+/* =========================================
+   COMPROBANTE FIELDS
+========================================= */
+.comp-field {
+    height: 42px;
+    display: flex;
+    align-items: center;
+    background: #f8fafc;
+    border: 1px dashed #d1d5db;
+    border-radius: 12px;
+    padding: 0 14px;
+    overflow: hidden;
+}
+.comp-field-text {
+    font-size: .95rem;
+    font-weight: 700;
+    color: #1e293b;
+    letter-spacing: .04em;
+}
+.comp-auto {
+    font-size: .78rem;
+    font-weight: 400;
+    color: #9ca3af;
+    font-style: italic;
+}
+
+/* =========================================
+   TOTAL BREAKDOWN (IGV)
+========================================= */
+.total-breakdown {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 220px;
+}
+.breakdown-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+}
+.breakdown-label {
+    font-size: .76rem;
+    font-weight: 500;
+    color: #9ca3af;
+}
+.breakdown-val {
+    font-size: .88rem;
+    font-weight: 600;
+    color: #374151;
+    min-width: 80px;
+    text-align: right;
+}
+.breakdown-divider {
+    height: 1px;
+    background: #e5e7eb;
+    margin: 3px 0;
+}
+.breakdown-label-total {
+    font-size: .76rem;
+    font-weight: 700;
+    color: #374151;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+}
+.vuelto-negativo { color: #dc2626 !important; font-weight: 700 !important; font-style: normal !important; }
+.vuelto-ok       { color: #16a34a !important; font-weight: 700 !important; font-style: normal !important; }
+
+/* =========================================
+   FADE IN
+========================================= */
+.fade-in { animation: fadeIn .3s ease; }
+@keyframes fadeIn {
+    from { opacity:0; transform:translateY(5px); }
+    to   { opacity:1; transform:translateY(0); }
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+@media (max-width: 576px) {
+    .page-header-mobile { flex-direction: column; align-items: flex-start; gap: 8px; }
+    .btn-group-header { width: 100%; display: flex; gap: 8px; }
+    .btn-group-header .btn { flex: 1; }
+}
+.cliente-selector-group {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 46px;
+    width: 100%;
+}
+
+.cliente-selector-control {
+    min-width: 0;
+}
+
+.cliente-selector-control > .form-select,
+.cliente-selector-control > .select2-container {
+    width: 100% !important;
+}
+
+.cliente-selector-control > .form-select,
+.cliente-selector-control .select2-selection--single {
+    height: 42px !important;
+    border-radius: 12px 0 0 12px !important;
+    border-right: 0 !important;
+}
+
+.cliente-selector-control .select2-selection--single .select2-selection__rendered {
+    line-height: 40px !important;
+    padding-left: 14px;
+}
+
+.cliente-selector-control .select2-selection--single .select2-selection__arrow {
+    height: 40px !important;
+}
+
+.btn-agregar-cliente {
+    width: 46px;
+    height: 42px;
+    padding: 0;
+    border-radius: 0 12px 12px 0 !important;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    position: relative;
+    z-index: 2;
+}
+.swal2-actions .venta-solo-registrar {
+    appearance: none;
+    background: #eef2ff !important;
+    border: 1px solid #c7d2fe !important;
+    border-radius: 10px;
+    color: #4054c7 !important;
+    padding: 12px 18px;
+    margin: 5px;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.4;
+    cursor: pointer;
+    transition: background .15s, box-shadow .15s;
+}
+.swal2-actions .venta-solo-registrar:hover { background: #e0e7ff !important; }
+.swal2-actions .venta-solo-registrar:focus-visible { outline: 2px solid #6366f1; outline-offset: 3px; }
+.swal2-actions .venta-solo-registrar:disabled { opacity: .6; cursor: default; }
+
+.venta-eleccion-trigger{display:flex;align-items:center;justify-content:space-between;gap:10px;text-align:left;background:#fff;color:#263650;overflow:hidden}.venta-eleccion-trigger span{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.venta-eleccion-trigger i{flex:0 0 auto;font-size:11px;color:#66768f}
+.venta-selector-cliente{z-index:1085}.venta-selector-cliente .modal-dialog{width:min(620px,calc(100% - 24px));max-width:620px}.venta-selector-cliente .modal-content{border:0;border-radius:18px;overflow:hidden;box-shadow:0 24px 70px rgba(5,12,28,.34)}.venta-selector-cliente .modal-header{display:flex;align-items:center;padding:17px 20px;border:0;background:#172238;color:#fff}.venta-selector-cliente .modal-header>div{flex:1}.venta-selector-cliente .modal-header small{color:#23d7f2;font-size:10px;font-weight:800;letter-spacing:.12em}.venta-selector-cliente .modal-header h5{margin:4px 0 0;color:#fff;font-size:18px}.venta-selector-cerrar{display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;padding:0;border:1px solid rgba(255,255,255,.25);border-radius:50%;background:rgba(255,255,255,.12);color:#fff}.venta-selector-cliente .modal-body{padding:14px 16px 18px}.venta-selector-busqueda{display:flex;align-items:center;gap:10px;padding:0 14px;border:1px solid #cfd8e7;border-radius:11px}.venta-selector-busqueda:focus-within{border-color:#5064ff;box-shadow:0 0 0 3px rgba(80,100,255,.12)}.venta-selector-busqueda i{color:#7b8799}.venta-selector-busqueda input{width:100%;height:46px;border:0;outline:0;background:transparent;color:#24324a}.venta-selector-lista{margin-top:12px;max-height:min(52vh,430px);overflow:auto}.venta-selector-opcion{display:flex;flex-direction:column;gap:3px;width:100%;padding:12px 10px;text-align:left;border:0;border-bottom:1px solid #edf0f5;background:#fff;color:#263651}.venta-selector-opcion:hover,.venta-selector-opcion.activo{background:#f2f5ff}.venta-selector-opcion strong{font-size:14px}.venta-selector-opcion span{font-size:12px;color:#718097}.venta-selector-vacio{padding:28px 10px;text-align:center;color:#7b8799}
+.venta-pago-panel{left:0!important;right:0!important;bottom:18px!important;width:min(760px,calc(100% - 32px))!important;height:auto!important;max-height:78vh;margin:auto;border:1px solid #e1e7f1!important;border-radius:22px!important;overflow:hidden;box-shadow:0 18px 70px rgba(18,29,51,.22)}.venta-pago-panel .offcanvas-header{padding:17px 22px;border-bottom:1px solid #edf0f7;background:#fff!important;color:#20314d}.venta-pago-panel .offcanvas-header>div{flex:1}.venta-pago-panel .offcanvas-header small{color:#5364ff;font-size:10px;font-weight:800;letter-spacing:.12em}.venta-pago-panel .offcanvas-header h5{margin:4px 0 0;color:#20314d!important;font-size:20px}.venta-pago-panel .btn-close{filter:none!important}.venta-pago-panel .offcanvas-body{padding:14px 18px 20px}.venta-pago-opciones{display:grid;gap:8px}.venta-pago-opcion{display:grid;grid-template-columns:42px minmax(0,1fr) 18px;align-items:center;gap:12px;width:100%;padding:11px 13px;text-align:left;border:1px solid #e0e6f0;border-radius:12px;background:#fff;color:#263651}.venta-pago-opcion:hover,.venta-pago-opcion.activo{border-color:#5064ff;background:#f0f2ff}.venta-pago-opcion>span:nth-child(2){display:flex;flex-direction:column;min-width:0}.venta-pago-opcion strong{font-size:14px}.venta-pago-opcion small{font-size:11px;color:#718097;overflow-wrap:anywhere}.venta-pago-icono{display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:11px;background:#eef1ff;color:#5364ff}
+@media(max-width:575px){.venta-pago-panel{bottom:8px!important;width:calc(100% - 16px)!important}.venta-selector-cliente .modal-dialog{margin:8px}}
+.venta-stock-popup{border-radius:20px!important;padding:12px 8px 20px!important}.venta-stock-popup .swal2-title{color:#17243a!important;font-size:24px!important}.venta-stock-popup .swal2-actions{gap:8px}.venta-stock-popup .swal2-actions .btn{min-height:42px;border-radius:11px;font-weight:700;margin:0}.venta-alerta-stock{text-align:left;color:#405071}.venta-alerta-stock>p{margin:0 0 14px;text-align:center;color:#263650}.venta-alerta-stock>div{display:flex;align-items:flex-start;gap:11px;padding:13px 14px;border:1px solid #dce4f2;border-radius:12px;background:#f5f7fc;font-size:13px;line-height:1.5}.venta-alerta-stock>div i{margin-top:3px;color:#5364ff}.venta-alerta-stock>small{display:block;margin-top:13px;text-align:center;color:#6e7d94;line-height:1.55}
+
+/* Mismo selector compacto usado en Movimientos. */
+.venta-pago-panel.offcanvas-bottom{z-index:1090!important;left:0!important;right:0!important;bottom:14px!important;width:min(960px,calc(100% - 32px))!important;height:auto!important;max-height:78vh;margin:0 auto;border:0!important;border-radius:20px!important;overflow:hidden;box-shadow:0 -20px 60px rgba(6,12,28,.24)}
+.venta-pago-panel .offcanvas-header{min-height:72px;padding:14px 20px;border:0!important;border-bottom:1px solid rgba(255,255,255,.08)!important;background:linear-gradient(120deg,#0b1020,#202b43)!important;color:#fff!important}.venta-pago-panel .offcanvas-header small{color:#1dd8f6!important;font-size:11px;font-weight:700}.venta-pago-panel .offcanvas-header h5{margin:4px 0 0;color:#fff!important;font-size:18px;font-weight:700}.venta-pago-panel .offcanvas-header .btn-close{width:32px;height:32px;padding:0;opacity:1;filter:invert(1)!important;background-color:rgba(255,255,255,.1);border-radius:50%}
+.venta-pago-panel .offcanvas-body{padding:14px 20px 18px;background:#fff}.venta-pago-opciones{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;max-width:790px;margin:auto}.venta-pago-opcion{display:grid;grid-template-columns:36px minmax(0,1fr) 12px;align-items:center;gap:12px;width:100%;min-height:54px;padding:8px 12px;text-align:left;border:1px solid #dfe5ef;border-radius:14px;background:#f9fbff;color:#293951}.venta-pago-opcion:hover,.venta-pago-opcion.activo{border-color:#5c69ff;background:#eef1ff}.venta-pago-icono{display:flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,#3867ff,#7b61ff);color:#fff;font-size:13px}.venta-pago-opcion>span:nth-child(2){display:block;min-width:0}.venta-pago-opcion strong,.venta-pago-opcion small{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.venta-pago-opcion strong{font-size:12px}.venta-pago-opcion small{margin-top:3px;color:#718097;font-size:10px}.venta-pago-opcion>.fa-chevron-right{color:#8a96a8;font-size:11px}.venta-pago-backdrop{z-index:1085!important;background:rgba(4,9,21,.68)!important;opacity:1!important;backdrop-filter:blur(3px)}
+@media(max-width:575px){.venta-pago-panel.offcanvas-bottom{bottom:8px!important;width:calc(100% - 16px)!important;max-height:80vh;border-radius:18px!important}.venta-pago-panel .offcanvas-header{min-height:64px;padding:11px 14px}.venta-pago-panel .offcanvas-header h5{font-size:16px}.venta-pago-panel .offcanvas-body{padding:10px 12px 14px}.venta-pago-opciones{grid-template-columns:1fr}.venta-pago-opcion{min-height:52px}}

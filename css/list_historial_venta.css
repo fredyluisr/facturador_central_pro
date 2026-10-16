@@ -1,0 +1,129 @@
+/* =========================================
+   ESTADO BADGES
+========================================= */
+.badge-activo {
+    background: #dcfce7; color: #16a34a;
+    padding: 4px 12px; border-radius: 20px;
+    font-size: .75rem; font-weight: 700;
+    border: 1px solid #bbf7d0;
+}
+.badge-anulado {
+    background: #fee2e2; color: #dc2626;
+    padding: 4px 12px; border-radius: 20px;
+    font-size: .75rem; font-weight: 700;
+    border: 1px solid #fecaca;
+}
+.badge-sunat-ok,
+.badge-sunat-pendiente,
+.badge-sunat-na {
+    display: inline-flex; align-items: center; gap: 5px;
+    padding: 4px 10px; border-radius: 20px;
+    font-size: .75rem; font-weight: 700; white-space: nowrap;
+}
+.badge-sunat-ok { background:#dcfce7; color:#15803d; border:1px solid #bbf7d0; }
+.badge-sunat-pendiente { background:#fef3c7; color:#b45309; border:1px solid #fde68a; }
+.badge-sunat-na { background:#f1f5f9; color:#64748b; border:1px solid #e2e8f0; }
+.sunat-status-btn{display:inline-flex;align-items:center;gap:5px;padding:5px 11px;border-radius:20px;font-size:.75rem;font-weight:700;white-space:nowrap;cursor:pointer}.sunat-status-btn.is-ok{background:#dcfce7;color:#15803d;border:1px solid #bbf7d0}.sunat-status-btn.is-pending{background:#fef3c7;color:#a16207;border:1px solid #fde68a}.sunat-status-btn:hover{filter:brightness(.97);transform:translateY(-1px)}
+.sunat-trace{text-align:left;color:#1f2937}.trace-document,.trace-grid>div,.trace-message,.trace-action{border:1px solid #e2e8f0;border-radius:12px;padding:12px}.trace-document{display:flex;justify-content:space-between;background:#f8fafc;margin-bottom:10px}.trace-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}.sunat-trace span{display:block;color:#718096;font-size:.72rem;margin-bottom:4px}.sunat-trace strong{font-size:.83rem}.trace-message{margin-bottom:10px;max-height:220px;overflow:auto}.trace-message p,.trace-action p{margin:0;font-size:.8rem;line-height:1.55;white-space:pre-wrap;word-break:break-word}.trace-action{background:#fff8dc;border-color:#f4d575}.trace-action span{color:#8a6500;font-weight:700}.sunat-trace-popup{border-radius:18px!important}
+.opciones-venta { display:flex; justify-content:center; gap:5px; flex-wrap:nowrap; }
+
+#offcanvasDetalleVenta {
+    width: 430px;
+    max-width: 100vw;
+    background: #f5f7fa;
+    border: 0;
+    box-shadow: -12px 0 40px rgba(15,23,42,.16);
+}
+#offcanvasDetalleVenta .offcanvas-header {
+    padding: 18px 20px;
+    background: #fff;
+    border-bottom: 1px solid #e9eef5;
+}
+#offcanvasDetalleVenta .offcanvas-title { font-size:1rem; font-weight:800; color:#111827; }
+#offcanvasDetalleVenta .offcanvas-body { padding:16px; overflow-y:auto; }
+.detalle-cpe {
+    display:flex; align-items:center; gap:12px;
+    padding:15px; margin-bottom:12px;
+    color:#fff; background:linear-gradient(135deg,#111827,#374151);
+    border-radius:15px;
+}
+.detalle-cpe-icon {
+    width:42px; height:42px; display:grid; place-items:center;
+    border-radius:12px; background:rgba(255,255,255,.14); font-size:1.1rem;
+}
+.detalle-cpe-label { font-size:.68rem; text-transform:uppercase; letter-spacing:.06em; opacity:.72; }
+.detalle-cpe-numero { font-size:.92rem; font-weight:800; margin-top:2px; }
+.oc-meta { background:#fff; border:1px solid #e8edf3; border-radius:14px; padding:11px 14px; margin-bottom:14px; }
+.oc-meta-row { display:flex; justify-content:space-between; align-items:flex-start; gap:14px; padding:6px 0; }
+.oc-meta-label { color:#94a3b8; font-size:.69rem; font-weight:700; text-transform:uppercase; white-space:nowrap; }
+.oc-meta-val { color:#1f2937; font-size:.79rem; font-weight:600; text-align:right; }
+.oc-section-title { margin:14px 2px 8px; color:#64748b; font-size:.69rem; font-weight:800; letter-spacing:.06em; text-transform:uppercase; }
+.oc-item { background:#fff; border:1px solid #e8edf3; border-radius:13px; padding:12px 13px; margin-bottom:9px; }
+.oc-item-nombre { color:#111827; font-size:.86rem; font-weight:700; margin-bottom:4px; }
+.oc-item-detalle { color:#64748b; font-size:.76rem; }
+.oc-item-subtotal { color:#111827; font-size:.9rem; font-weight:800; white-space:nowrap; }
+.oc-breakdown { background:#fff; border:1px solid #e8edf3; border-radius:14px; padding:12px 15px; margin-top:12px; }
+.oc-brow { display:flex; justify-content:space-between; align-items:center; padding:4px 0; }
+.oc-blabel { color:#94a3b8; font-size:.75rem; }
+.oc-bval { color:#374151; font-size:.82rem; font-weight:700; }
+.oc-bdivider { height:1px; background:#e5e7eb; margin:5px 0; }
+.oc-blabel-total { color:#374151; font-size:.75rem; font-weight:800; text-transform:uppercase; }
+.oc-bval-total { color:#111827; font-size:1.15rem; font-weight:900; }
+.detalle-observacion { padding:11px 13px; margin-bottom:12px; border-radius:12px; background:#fffbeb; border:1px solid #fde68a; color:#78350f; font-size:.78rem; }
+.detalle-impresion { display:grid; grid-template-columns:1fr 1fr; gap:8px; padding-bottom:8px; }
+.detalle-impresion .btn { border-radius:10px; font-size:.8rem; }
+
+/* Acciones del visor: descarga directa y controles compactos en móvil/tablet. */
+#modalPdfViewer .pdf-viewer-btn {
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:6px;
+    white-space:nowrap;
+}
+
+@media (max-width: 991.98px) {
+    #modalPdfViewer .modal-dialog { margin:.5rem; }
+    #modalPdfViewer .modal-header { padding:.55rem .7rem !important; }
+    #modalPdfViewer .modal-title { font-size:.95rem; }
+    #modalPdfViewer .pdf-viewer-actions { gap:5px !important; }
+    #modalPdfViewer .pdf-viewer-btn { padding:.38rem .58rem; }
+    #modalPdfViewer .pdf-download-label { font-size:0; }
+    #modalPdfViewer .pdf-download-label::after { content:"PDF"; font-size:.75rem; }
+    #modalPdfViewer .pdf-print-label { display:none; }
+}
+
+@media (max-width: 420px) {
+    #modalPdfViewer .modal-title { font-size:.86rem; }
+    #modalPdfViewer .pdf-viewer-btn { min-width:38px; padding:.36rem .48rem; }
+}
+
+/* =========================================
+   TOTAL BOX FOOTER
+========================================= */
+.total-box {
+    margin-top: 14px;
+    background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+    border: 1px solid #eef2f7;
+    border-radius: 16px;
+    padding: 16px 20px;
+    text-align: right;
+    color: #374151;
+    font-size: .92rem;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.8);
+}
+.total-box span { font-weight: 700; }
+#total_visible { font-size: 1.15rem; color: #111827; }
+
+/* =========================================
+   INPUT DATE ICON
+========================================= */
+.input-groupicon { position: relative; display: flex; align-items: center; }
+.input-groupicon input { width: 100%; padding-right: 35px; }
+.input-groupicon .addonset {
+    position: absolute; top: 50%; right: 8px;
+    z-index: 10; display: flex; align-items: center;
+    cursor: pointer; transform: translateY(-50%);
+}
+.input-groupicon .addonset img { width: 18px; height: 18px; }
+.venta-nc-vinculada{margin-top:5px;padding:3px 7px;border:1px solid #f0b429;border-radius:7px;background:#fff8dd;color:#815d00;font-size:10px;font-weight:800;line-height:1.2;cursor:pointer}.venta-nc-vinculada:hover{background:#ffefad;color:#604600}.venta-nc-vinculada i{margin-right:4px}

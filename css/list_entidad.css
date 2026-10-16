@@ -1,0 +1,20 @@
+.entidad-page .seccion-comprobante { background:#fff;border:1px solid #edf0f5;border-radius:18px;padding:20px; }
+.entidad-page .seccion-label-minimal { color:#64748b;font-size:12px;text-transform:uppercase;letter-spacing:.5px;margin-bottom:16px; }
+.entidad-page .form-label-custom { display:block;margin-bottom:7px;color:#37445a;font-size:13px; }
+.entidad-page #btn_buscar_doc { background:linear-gradient(110deg,#3867ff,#7b61ff);color:white;border:0;border-radius:0 12px 12px 0; }
+.entidad-page .table tbody td { padding:12px 10px; }
+.entidad-page .select2-dropdown { z-index:1060; }
+.entidad-page #reg_edi .entity-document-field { position:relative;width:100%; }
+.entidad-page #reg_edi .entity-document-field #ent_nro_doc { width:100%;border-radius:10px; }
+.entidad-page #reg_edi .entity-document-field.has-document-search #ent_nro_doc { padding-right:46px; }
+.entidad-page #reg_edi .entity-document-field #btn_buscar_doc { position:absolute;top:50%;right:5px;transform:translateY(-50%);width:32px;height:32px;min-height:0;padding:0!important;display:inline-flex;align-items:center;justify-content:center;border-radius:8px!important;box-shadow:none!important;z-index:2; }
+.entidad-page #reg_edi .entity-document-field #btn_buscar_doc[hidden] { display:none!important; }
+.entidad-page .entity-switch { position:relative;display:flex;align-items:center;gap:10px;min-height:42px;margin:0;cursor:pointer; }
+.entidad-page .entity-switch input { position:absolute;width:1px;height:1px;opacity:0; }
+.entidad-page .entity-switch-track { position:relative;width:42px;height:24px;background:#cbd5e1;border-radius:24px;transition:background .15s;flex-shrink:0; }
+.entidad-page .entity-switch-track:after { content:'';position:absolute;left:3px;top:3px;width:18px;height:18px;border-radius:50%;background:white;box-shadow:0 1px 3px #0002;transition:transform .15s; }
+.entidad-page .entity-switch input:checked + .entity-switch-track { background:linear-gradient(110deg,#3867ff,#7b61ff); }
+.entidad-page .entity-switch input:checked + .entity-switch-track:after { transform:translateX(18px); }
+.entidad-page .entity-switch input:focus-visible + .entity-switch-track { outline:2px solid #5064ff;outline-offset:3px; }
+.entidad-page .entity-switch-value:after { content:'No';color:#64748b;font-size:13px; }
+.entidad-page .entity-switch input:checked ~ .entity-switch-value:after { content:'Sí';color:#5064ff;font-weight:600; }
