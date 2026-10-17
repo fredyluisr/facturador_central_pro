@@ -3,10 +3,10 @@ require_once __DIR__.'/../model/sesion_central.php';
 if(!empty($_SESSION['facturador_admin_id'])){header('Location: dashboard_central.php');exit;}
 $error=$_SESSION['login_error']??null;$usuario=$_SESSION['login_usuario']??'';unset($_SESSION['login_error'],$_SESSION['login_usuario']);$csrf=tokenCsrfCentral();
 ?>
-<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Administración central de facturación electrónica de Intelsoft Perú"><title>Facturador Central · Intelsoft Perú</title><link rel="icon" href="../assets/img/ifact.ico"><link rel="stylesheet" href="../css/login_central.css?v=<?=filemtime(__DIR__.'/../css/login_central.css')?>"></head>
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Administración central de facturación electrónica de Intelsoft Perú"><title>Facturador Central · Intelsoft Perú</title><link rel="icon" href="../assets/img/ifact.ico"><link rel="stylesheet" href="../assets/plugins/fontawesome/css/all.min.css"><link rel="stylesheet" href="../css/login_central.css?v=<?=filemtime(__DIR__.'/../css/login_central.css')?>"><link rel="stylesheet" href="../css/central_loader.css?v=<?=filemtime(__DIR__.'/../css/central_loader.css')?>"></head>
 <body><main class="login-layout">
 <section class="login-form-panel"><div class="login-form-wrap">
-<a class="brand" href="../index.php" aria-label="Facturador Central"><img src="../assets/img/ifact-symbol.png" alt=""><span><strong>Facturador</strong> Central<small>by Intelsoft Perú</small></span></a>
+<a class="brand intelsoft-brand" href="../index.php" aria-label="Intelsoft Perú"><img src="../assets/img/intelsoft-logo-horizontal.png" alt="Intelsoft Perú" style="width:205px;height:auto;max-height:64px;object-position:left center"></a>
 <div class="login-heading"><span class="overline">Panel administrativo</span><h1>Bienvenido de nuevo</h1><p>Ingresa tus credenciales para gestionar la operación de facturación.</p></div>
 <?php if($error):?><div class="alert" role="alert"><span>!</span><?=htmlspecialchars((string)$error,ENT_QUOTES,'UTF-8')?></div><?php endif;?>
 <form method="post" action="../controller/auth_central.php" id="loginForm" novalidate><input type="hidden" name="csrf" value="<?=htmlspecialchars($csrf,ENT_QUOTES,'UTF-8')?>">
@@ -16,4 +16,4 @@ $error=$_SESSION['login_error']??null;$usuario=$_SESSION['login_usuario']??'';un
 <p class="secure-note"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></svg> Sesión protegida y cifrada</p>
 </div></section>
 <section class="login-showcase"><div class="grid"></div><div class="orb"></div><div class="showcase-content"><span class="status"><i></i> Plataforma operativa</span><h2>Facturación electrónica<br><em>central, clara y segura.</em></h2><p>Administra empresas, credenciales y operaciones tributarias desde una plataforma creada para crecer contigo.</p><div class="benefits"><span><i>✓</i> Conexión SUNAT</span><span><i>✓</i> Gestión centralizada</span><span><i>✓</i> Acceso seguro</span></div></div><p class="copyright">© <?=date('Y')?> Intelsoft Perú · Tecnología y sistemas</p></section>
-</main><script src="../js/login_central.js?v=<?=filemtime(__DIR__.'/../js/login_central.js')?>"></script></body></html>
+</main><script src="../js/central_loader.js?v=<?=filemtime(__DIR__.'/../js/central_loader.js')?>"></script><script src="../js/login_central.js?v=<?=filemtime(__DIR__.'/../js/login_central.js')?>"></script></body></html>

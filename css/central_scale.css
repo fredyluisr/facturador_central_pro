@@ -1,0 +1,32 @@
+/* Escala tipográfica legible para todas las páginas del panel central. */
+.central-admin-page .hero.compact{padding:30px 32px}
+.central-admin-page .hero h1{font-size:32px;letter-spacing:-.5px}
+.central-admin-page .hero p{font-size:14px;line-height:1.55}
+.central-admin-page .eyebrow{font-size:11px}
+.central-admin-page .hero.compact .primary{padding:12px 18px;font-size:13px;font-weight:700}
+.central-admin-page .panel-head{padding:23px 24px}
+.central-admin-page .panel-head h2{font-size:19px;font-weight:700}
+.central-admin-page .panel-head p{font-size:12px;line-height:1.5}
+.central-admin-page table{font-size:13px}
+.central-admin-page th{padding:15px 18px;font-size:10px;font-weight:800;letter-spacing:.65px}
+.central-admin-page td{padding:18px;font-size:13px}
+.central-admin-page td strong{font-size:13px}
+.central-admin-page td>small{margin-top:6px;font-size:11px}
+.central-admin-page .badge,.central-admin-page .mode{padding:6px 11px;font-size:10px}
+.central-admin-page .table-action{padding:9px 12px;font-size:11px}
+.central-admin-page .sidebar-menu>ul>li>a{font-size:14px}
+.central-admin-page .central-nav-label{font-size:10px!important}
+.central-admin-page .central-service-pill small{font-size:8px}
+.central-admin-page .central-service-pill strong{font-size:13px}
+@media(max-width:991px){.central-admin-page table{font-size:12px}.central-admin-page th{font-size:9px}.central-admin-page td{padding:15px 13px;font-size:12px}}
+.form-sections>fieldset:nth-of-type(4)>legend{display:none!important}
+
+/* Sidebar central: hereda el colapso de la plantilla y oculta sólo el rótulo propio. */
+@media(min-width:992px){
+  body.central-admin-page.mini-sidebar:not(.expand-menu) .central-nav-label{display:none!important}
+  body.central-admin-page.mini-sidebar.expand-menu .central-nav-label{display:block!important}
+}
+
+/* La marca reducida usa el isotipo original contenido en el logo oficial de Intelsoft. */
+.central-header .central-intelsoft-mark{width:38px;height:38px;overflow:hidden;padding:0!important;border-radius:50%}
+.central-header .central-intelsoft-mark img{width:122px!important;height:38px!important;max-width:none!important;object-fit:cover!important;object-position:left center!important}
